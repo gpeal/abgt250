@@ -45,6 +45,7 @@ void loop()
   // wipeEdge(strip.Color(255, 0, 0), 50);
   // rainbowBounceWaveFromTopRightVertex();
   // rainbowWaveFromTopRightVertex();
+  spiralMiddle();
   // middleOutRainbowCycle();
   // colorWipe(strip.Color(255, 0, 0), wipeSpeed);
   // blink(1000, strip.Color(0, 0, 255));

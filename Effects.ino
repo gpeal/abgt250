@@ -58,7 +58,6 @@ void rippleEdge(uint8_t r, uint8_t g, uint8_t b)
       }
     }
     show();
-
     delay(100);
   }
 }
@@ -143,6 +142,21 @@ boolean rainbowCycle(uint8_t wait)
     delay(wait);
   }
   return false;
+}
+
+// disco ball, every 50ms
+// rotation
+
+boolean spiralMiddle()
+{
+  uint16_t middleAnchors[6] = {7, 60, 75, 128, 141, 195}
+  for (uint8_t i = 0; i < 6; i++) {
+    setPixelColor(middleAnchor[i], 0, 0, 255);
+    setPixelColor(middleAnchor[(i - 1) % 6], 0, 0, 0)
+    show();
+    delay(50);
+  }
+
 }
 
 boolean edgeRainbowCycle()

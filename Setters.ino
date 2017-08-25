@@ -74,6 +74,12 @@ void setEdgeColor(int index, uint32_t color, bool withRing)
     setPixelColor(68 + index, color); // Edge 3
     setPixelColor(202 - index, color); // Edge 6
   }
+  if (index == 34) {
+    setPixelColor(33, color);
+    setPixelColor(34, color);
+    setPixelColor(102, color);
+    setPixelColor(168, color);
+  }
   if (withRing) {
     if (index == 0)
     {
