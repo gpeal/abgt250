@@ -58,6 +58,8 @@ void rippleEdge(uint8_t r, uint8_t g, uint8_t b)
       }
     }
     show();
+
+    delay(100);
   }
 }
 

@@ -38,9 +38,9 @@ void loop()
   // wipeRing(BLUE);
   // delay(100);
 
-  stepThrough();
+  // stepThrough();
   // blink(1000, RED);
-  // rippleEdge(255, 0, 0);
+  rippleEdge(255, 0, 0);
   // setColor(RED);
   // wipeEdge(strip.Color(255, 0, 0), 50);
   // rainbowBounceWaveFromTopRightVertex();

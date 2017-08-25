@@ -1,15 +1,15 @@
 #include "Setters.h"
 /**
-0-32    = edge 1 (7 middle anchor, up)
+0-32    = [32] edge 1 (7 middle anchor, up)
 33      = exactly the top
 34      = covered, near the top
-34-67   = edge 2 (60 middle anchor, down)
-68-101  = edge 3 (75 middle anchor, up, 215 bottom anchor)
+34-67   = [33] edge 2 (60 middle anchor, down)
+68-101  = [33] edge 3 (75 middle anchor, up, 215 bottom anchor)
 102     = top
-103-134 = edge 4 (128 middle anchor, down)
-135-167 = edge 5 (141 middle anchor, up, 238 bottom anchor)
+103-134 = [31] edge 4 (128 middle anchor, down)
+135-167 = [32] edge 5 (141 middle anchor, up, 238 bottom anchor)
 168     = REAL top
-169-202 = edge 6 (195 middle anchor, 203 bottom anchor, 283 hidden anchor)
+169-202 = [33] edge 6 (195 middle anchor, down, 203 bottom anchor, 283 hidden anchor)
 
 203     = bottom anchor (edge 6)
 204-214 = bottom edge 1
@@ -59,29 +59,32 @@ void setEdgeColor(int index, uint32_t color)
 
 void setEdgeColor(int index, uint32_t color, bool withRing)
 {
+  if (index <= 31)
+  {
+    setPixelColor(134 - index, color); // Edge 4
+  }
   if (index <= 32)
   {
-    setPixelColor(index, color);
-    setPixelColor(66 - index, color);
+    setPixelColor(index, color); // Edge 1
+    setPixelColor(135 + index, color); // Edge 5
   }
-  if (index <= 35)
+  if (index <= 33)
   {
-    setPixelColor(69 + index, color);
-    setPixelColor(135 - index, color);
-    setPixelColor(134 + index, color);
-    setPixelColor(200 - index, color);
+    setPixelColor(67 - index, color); // Edge 2
+    setPixelColor(68 + index, color); // Edge 3
+    setPixelColor(202 - index, color); // Edge 6
   }
   if (withRing) {
     if (index == 0)
     {
-      for (int i = 201; i <= 274; i++)
+      for (int i = 203; i <= 272; i++)
       {
         setPixelColor(i, color);
       }
     }
     else if (index == 7)
     {
-      for (int i = 275; i < strip.numPixels(); i++)
+      for (int i = 273; i <= 356; i++)
       {
         setPixelColor(i, color);
       }
