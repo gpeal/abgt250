@@ -327,6 +327,15 @@ boolean theaterChaseRainbow(uint8_t wait)
   return true;
 }
 
+void disco(uint32_t color, int numPixels, int wait) {
+  for (int i = 0; i < numPixels; i++) {
+    int pixel = random(0, 357);
+    strip.setPixelColor(pixel, strip.getPixelColor(pixel) == 0 ? color : 0);
+  }
+  strip.show();
+  delay(wait);
+}
+
 boolean beforeDelay()
 {
   //  int brightness = analogRead(BRIGHTNESS_PIN) / 1023.0 * 100;

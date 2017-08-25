@@ -40,7 +40,7 @@ void loop()
 
   // stepThrough();
   // blink(1000, RED);
-  rippleEdge(255, 0, 0);
+  // rippleEdge(255, 0, 0);
   // setColor(RED);
   // wipeEdge(strip.Color(255, 0, 0), 50);
   // rainbowBounceWaveFromTopRightVertex();
@@ -55,6 +55,7 @@ void loop()
   // edgeRainbowCycle();
   // theaterChaseRainbow(10);
   // randomColors(10);
+  disco(0xD3FCFF, 50, 50);
 }
 
 void setBrightness(int brightness)
