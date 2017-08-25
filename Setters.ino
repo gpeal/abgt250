@@ -57,6 +57,29 @@ void setEdgeColor(int index, uint32_t color)
   setEdgeColor(index, color, true);
 }
 
+void setVerticalEdgeColor(int index, int edgeNo, uint32_t color)
+{
+  if (edgeNo == 0) {
+    setPixelColor(index, color);
+  } else if (edgeNo == 1) {
+    setPixelColor(67 - index, color);
+  } else if (edgeNo == 2) {
+    setPixelColor(68 + index, color);
+  } else if (edgeNo == 3) {
+    setPixelColor(134 - index, color);
+  } else if (edgeNo == 4) {
+    setPixelColor(135 + index, color);
+  } else if (edgeNo == 5) {
+    setPixelColor(202 - index, color);
+  }
+}
+
+void setVerticalEdgeRange(int index, int count, int edgeNo, uint32_t color) {
+  for (int i = index; i < index + count; i++) {
+    setVerticalEdgeColor(i, edgeNo, color);
+  }
+}
+
 void setEdgeColor(int index, uint32_t color, bool withRing)
 {
   if (index <= 31)

@@ -147,16 +147,47 @@ boolean rainbowCycle(uint8_t wait)
 // disco ball, every 50ms
 // rotation
 
-boolean spiralMiddle()
+// Only
+boolean spiralMiddle() // LOL
 {
-  uint16_t middleAnchors[6] = {7, 60, 75, 128, 141, 195}
-  for (uint8_t i = 0; i < 6; i++) {
-    setPixelColor(middleAnchor[i], 0, 0, 255);
-    setPixelColor(middleAnchor[(i - 1) % 6], 0, 0, 0)
+  for (uint8_t i = 0; i < 100; i++) {
+    uint8_t oldX = (int)((i - 5) / 100.0 * 6);
+    uint8_t oldY = (int)((i - 5) / 100.0 * 34);
+    if (oldX > 0 && oldY > 0) {
+      setVerticalEdgeRange(oldY, 3, oldX, 0);
+    }
+
+    uint8_t x = (int)(i / 100.0 * 6);
+    uint8_t y = (int)(i / 100.0 * 34);
+    int color = Wheel((int)(y / 35.0 * 255));
+    setVerticalEdgeRange(y, 3, x, color);
+
+    show();
+    delay(10);
+  }
+}
+
+boolean mellowPumpItUp() {
+  int delayMs = 50;
+  int totalCount = 10;
+  for (int count = 0; count < totalCount; count++) {
+    delayMs = (int)(delayMs * .6);
+    for (int i = 0; i < 35; i++) {
+      // int color = Wheel((int)((i / 35.0) * 255 + (count % 6) / 5.0 * 255.0) % 255);
+      int color = Wheel((int) count / (double) totalCount * 255.0);
+      setEdgeColor(i, color, false);
+      show();
+      delay(delayMs);
+    }
+  }
+  for (int i = 0; i < 5; i++) {
+    setColor(0xffffff);
+    show();
+    delay(50);
+    setColor(0);
     show();
     delay(50);
   }
-
 }
 
 boolean edgeRainbowCycle()
@@ -366,6 +397,7 @@ void pulseAccelerate(uint32_t maxDelay) {
     if (i >= 7 && 1 < 17) {
       setTopRingColorSymmetrical(i - 7, color);
     }
+    show();
     delay(maxDelay - 3 * i);
   }
 }

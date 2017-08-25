@@ -45,7 +45,9 @@ void loop()
   // wipeEdge(strip.Color(255, 0, 0), 50);
   // rainbowBounceWaveFromTopRightVertex();
   // rainbowWaveFromTopRightVertex();
-  spiralMiddle();
+  // spiralMiddle();
+  mellowPumpItUp();
+
   // middleOutRainbowCycle();
   // colorWipe(strip.Color(255, 0, 0), wipeSpeed);
   // blink(1000, strip.Color(0, 0, 255));
@@ -57,7 +59,7 @@ void loop()
   // theaterChaseRainbow(10);
   // randomColors(10);
   // disco(0xD3FCFF, 150, 75, 25);
-  pulseAccelerate(120);
+  // pulseAccelerate(120);
 }
 
 void setBrightness(int brightness)
