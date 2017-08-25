@@ -55,7 +55,7 @@ void loop()
   // edgeRainbowCycle();
   // theaterChaseRainbow(10);
   // randomColors(10);
-  disco(0xD3FCFF, 50, 50);
+  disco(0xD3FCFF, 150, 75, 25);
 }
 
 void setBrightness(int brightness)

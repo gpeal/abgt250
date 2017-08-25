@@ -327,10 +327,16 @@ boolean theaterChaseRainbow(uint8_t wait)
   return true;
 }
 
-void disco(uint32_t color, int numPixels, int wait) {
-  for (int i = 0; i < numPixels; i++) {
-    int pixel = random(0, 357);
-    strip.setPixelColor(pixel, strip.getPixelColor(pixel) == 0 ? color : 0);
+void disco(uint32_t color, int numPixels, int turnOffPercentage, int wait) {
+  int numPixelsSet = 0;
+  for (int i = 0; i <= 357; i++) {
+    if (strip.getPixelColor(i) != 0 && random(0, 100) < turnOffPercentage) {
+      strip.setPixelColor(i, CLEAR);
+    }
+  }
+
+  for (int i = numPixelsSet; i < numPixels; i++) {
+    strip.setPixelColor(random(0, 357), color);
   }
   strip.show();
   delay(wait);
