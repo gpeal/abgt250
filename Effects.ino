@@ -342,6 +342,20 @@ void disco(uint32_t color, int numPixels, int turnOffPercentage, int wait) {
   delay(wait);
 }
 
+void pulseAccelerate(uint32_t maxDelay) {
+  for (int i = 0; i < 35; i++) {
+    uint32_t color = Wheel(255 / 35);
+    setEdgeColor(i, color, false);
+    if (i < 7) {
+      setBottomRingColorSymmetrical(i, color);
+    }
+    if (i >= 7 && 1 < 17) {
+      setTopRingColorSymmetrical(i - 7, color);
+    }
+    delay(maxDelay - 3 * i);
+  }
+}
+
 boolean beforeDelay()
 {
   //  int brightness = analogRead(BRIGHTNESS_PIN) / 1023.0 * 100;
