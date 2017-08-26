@@ -16,17 +16,15 @@ uint32_t Wheel(byte WheelPos)
   return strip.Color(WheelPos * 3, 255 - WheelPos * 3, 0);
 }
 
-byte* randomColor() {
-  byte RGB[] = {0, 0, 0};
-  hsvToRgb(random(256) / 255.0f, RGB);
-  return RGB;
+uint32_t randomColor() {
+  return hsvToRgb(random(255) / 255.0f);
 }
 
-void hsvToRgb(double h, byte rgb[]) {
-  hsvToRgb(h, 1.0, 0.5, rgb);
+uint32_t hsvToRgb(double h) {
+  return hsvToRgb(h, 1.0, 0.5);
 }
 
-void hsvToRgb(double h, double s, double v, byte rgb[]) {
+uint32_t hsvToRgb(double h, double s, double v) {
     double r, g, b;
 
     double q = v < 0.5 ? v * (1 + s) : v + s - v * s;
@@ -35,18 +33,7 @@ void hsvToRgb(double h, double s, double v, byte rgb[]) {
     g = hue2rgb(p, q, h);
     b = hue2rgb(p, q, h - 1/3.0);
 
-    Serial.print(h);
-    Serial.print(" ");
-    Serial.print(r);
-    Serial.print(" ");
-    Serial.print(g);
-    Serial.print(" ");
-    Serial.print(b);
-    Serial.println();
-
-    rgb[0] = r * 255;
-    rgb[1] = g * 255;
-    rgb[2] = b * 255;
+    return strip.Color(r * 255, g * 255, b * 255);
 }
 
 double hue2rgb(double p, double q, double t) {

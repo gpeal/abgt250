@@ -3,6 +3,10 @@
 #include <avr/power.h>
 #endif
 
+// typedef uint32_t u32
+// typedef uint16_t u16
+// typedef uint8_t u8
+
 #define DEBOUNCE_COUNT 1
 #define BRIGHTNESS_PIN A4
 #define MODE_BUTTON_PIN 2
@@ -23,8 +27,10 @@ void setup()
   pinMode(MODE_BUTTON_PIN, INPUT);
   strip.begin();
   strip.show();
-  setBrightness(20);
+  setBrightness(20);  
 }
+
+int counter = 0;
 
 void loop()
 {
@@ -41,6 +47,9 @@ void loop()
   // stepThrough();
   // blink(1000, RED);
   // rippleEdge(255, 0, 0);
+  // sunRise();
+  counter = (counter + random(50, 200)) % 255;
+  wipeFromMiddle(Wheel(counter), 10);
   // setColor(RED);
   // wipeEdge(strip.Color(255, 0, 0), 50);
   // rainbowBounceWaveFromTopRightVertex();
@@ -59,7 +68,12 @@ void loop()
   // theaterChaseRainbow(10);
   // randomColors(10);
   // disco(0xD3FCFF, 150, 75, 25);
+<<<<<<< HEAD
   // pulseAccelerate(120);
+=======
+  // pulseAccelerate(150);
+  // setColor(CLEAR);
+>>>>>>> Added sunrise and wipeFromMidle
 }
 
 void setBrightness(int brightness)

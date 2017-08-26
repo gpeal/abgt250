@@ -62,6 +62,49 @@ void rippleEdge(uint8_t r, uint8_t g, uint8_t b)
   }
 }
 
+void sunRise()
+{
+  float f[] = {0.9, 0.6, 0.4, 0.2f, 0.15f, 0.0f};
+  int len = sizeof(f) / sizeof(f[0]);
+  setColor(CLEAR);
+
+  for (uint8_t i = 0; i < 35; i++)
+  {
+    for (uint8_t j = 0; j < 35; j++)
+    {
+      setEdgeColor(i, Wheel(j * 255 / 35));
+      for (uint8_t k = 0; k < len; k++)
+      {
+        if (i >= k)
+        {
+          setEdgeColor(i - k, Wheel(k * 255 / 35));
+        }
+        if (i <= 34 - k)
+        {
+          setEdgeColor(i + k, Wheel(k * 255 / 35));
+        }
+      }
+    }
+    show();
+
+    delay(100);
+  }
+}
+
+void wipeFromMiddle(uint32_t color, int wait) {
+  for (int i = 0; i < 16; i++) {
+    setEdgeColor(22 + i, color);
+    setEdgeColor(22 - i, color);
+    setTopRingColorSymmetrical(7 + i, color);
+    show();
+    delay(wait);
+  }
+  // if (color != 0) {
+  //   wipeFromMiddle(CLEAR, wait);
+  // }
+}
+
+
 void stepThrough()
 {
   for (uint16_t i = 0; i < strip.numPixels(); i++) {
@@ -388,8 +431,8 @@ void disco(uint32_t color, int numPixels, int turnOffPercentage, int wait) {
 }
 
 void pulseAccelerate(uint32_t maxDelay) {
-  for (int i = 0; i < 35; i++) {
-    uint32_t color = Wheel(255 / 35);
+  for (int i = 0; i < 50; i++) {
+    uint32_t color = Wheel(i * (255 / 50));
     setEdgeColor(i, color, false);
     if (i < 7) {
       setBottomRingColorSymmetrical(i, color);
@@ -398,7 +441,11 @@ void pulseAccelerate(uint32_t maxDelay) {
       setTopRingColorSymmetrical(i - 7, color);
     }
     show();
+<<<<<<< HEAD
     delay(maxDelay - 3 * i);
+=======
+    delay(min(maxDelay - 3 * i, 5));
+>>>>>>> Added sunrise and wipeFromMidle
   }
 }
 
